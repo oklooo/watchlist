@@ -75,7 +75,7 @@ def inject_user():
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == "POST":
-        if not current_user.is_authenticatd:
+        if not current_user.is_authenticated:
             return redirect(url_for('index'))
         title = request.form.get('title')
         year = request.form.get('year')
@@ -201,6 +201,6 @@ def settings():
 
         current_user.name = name
         db.session.commit()
-        flash('Setting updated.')
+        flash('Settings updated.')
         return redirect(url_for('index'))
     return render_template('settings.html')
